@@ -1,0 +1,82 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: rgb(67, 117, 67);
+}
+.shopping {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: white;
+}
+img {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 10px;
+}
+#grocery {
+    font-size: 40px;
+} 
+.items {
+    margin-bottom: 10px;
+}
+input {
+    padding: 5px;
+    border-radius: 5%;
+    font-size: 20px;
+    outline: none;
+}
+button {
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 40% auto;
+}
+li {
+    background-color: white;
+    padding: 10px;
+    font-size: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+.unchecked::before {
+    content: "";
+    background-image: url(./circle.svg);
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 8px;
+}
+li::before {
+    content: "";
+    background-image: url(./check-circle-fill.svg);
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 8px;
+}
+.editIcon {
+    position: absolute;
+    right: 300px;
+}
+.editIcon:hover {
+    color: blue;
+    font-size: 30px;
+}
+.deleteIcon {
+    position: absolute;
+    right: 10px;
+}
+.deleteIcon:hover {
+    color: red;
+    font-size: 30px;
+}
