@@ -1,47 +1,49 @@
 const input = document.querySelector('input');
-const addBtn = document.querySelector('button');
-const cart = document.querySelector('ul');
-const checked = document.querySelector('li::before');
-const body = document.querySelector('body');
+const addBtn = document.querySelector('.add-btn');
+const cart = document.querySelector('.cart');
 
 addBtn.addEventListener('click', () => {
+    
     if(input.value === '') {
         alert('buy grocery');
     }
     else {
-        li = document.createElement('li');
-        li.innerHTML = input.value;
-        li.classList.add('unchecked');
-        cart.appendChild(li);
+        let div = document.createElement('div');
+        div.className = 'flex relative mt-2';
 
-        editIcon = document.createElement('i');
-        editIcon.innerHTML = '&#9998';
-        editIcon.classList.add('editIcon');
-        li.appendChild(editIcon);
+        let checkBox = document.createElement('input');
+        checkBox.type = 'checkbox';
+        checkBox.className = 'absolute top-4 left-3';
+        checkBox.addEventListener('click', () => {
+            liElem.style.opacity = '0.5';
+        });
 
-        deleteIcon = document.createElement('span');
-        deleteIcon.innerHTML = '&#10006';
-        deleteIcon.classList.add('deleteIcon');
-        li.appendChild(deleteIcon);
+        let liElem = document.createElement('li');
+        liElem.innerHTML = input.value;
+        liElem.className = 'bg-white p-3 w-96 rounded-l-lg pl-8';
+        liElem.addEventListener('blur', () => {
+            liElem.contentEditable = false;
+        });
+
+        let editIcon = document.createElement('button');
+        editIcon.innerHTML = 'Edit';
+        editIcon.className = 'edit bg-orange-400 p-3';
+        editIcon.addEventListener('click', () => {
+            liElem.contentEditable = true;
+            liElem.focus()
+            liElem.style.opacity = '1';
+            checkBox.checked = false;
+        });
+
+        let deleteIcon = document.createElement('button');
+        deleteIcon.innerHTML = 'Delete';
+        deleteIcon.className = 'delete bg-red-600 text-white rounded-r-lg p-3';
+        deleteIcon.addEventListener('click', () => {
+            div.remove()
+        })
+
+        div.append(checkBox, liElem, editIcon, deleteIcon);
+        cart.append(div);
     }
     input.value ='';
-
-})
-
-// adding click event to edit, delete and checkbox
-cart.addEventListener('click', e => {
-    if(e.target.tagName === 'LI') {
-        e.target.classList.toggle('unchecked');
-    }
-    else if (e.target.tagName === 'SPAN') {
-        e.target.parentElement.remove();
-    }
-    else if (e.target.tagName === 'I') {
-        e.target.parentElement.contentEditable = true;
-        e.target.parentElement = focus;
-    }
-}, false)
-
-cart.addEventListener('blur', () => {
-    cart.contentEditable = false;
 })
